@@ -31,5 +31,6 @@ public class Ventana extends JFrame {
         tag_title.setFont(new Font("Arial",Font.BOLD,22));
         tag_title.setHorizontalAlignment(JLabel.CENTER);
         this.add(tag_title);
+        
     }
 }
