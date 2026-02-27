@@ -1,3 +1,4 @@
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -9,6 +10,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -31,7 +33,6 @@ public class Ventana extends JFrame {
         JPanel login_container = new JPanel();
         login_container.setSize(400,600);
         login_container.setLocation(80, 50);
-        login_container.setBackground(Color.gray);
         login_container.setLayout(null);
         this.add(login_container);
         
@@ -69,11 +70,15 @@ public class Ventana extends JFrame {
         JTextField email_input = new JTextField();
         email_input.setSize(280, 40);
         email_input.setLocation(65, 300);
+        email_input.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        email_input.setBackground(Color.LIGHT_GRAY);
         login_container.add(email_input);
         
         JPasswordField password_input = new JPasswordField();
         password_input.setSize(280, 40);
         password_input.setLocation(65, 400);
+        password_input.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        password_input.setBackground(Color.LIGHT_GRAY);
         login_container.add(password_input);
         
         
@@ -81,6 +86,8 @@ public class Ventana extends JFrame {
         JButton access_btn = new JButton("Acceder");
         access_btn.setBounds(105, 540, 200, 40);
         access_btn.setFont(new Font("Arial", Font.BOLD, 20));
+        access_btn.setBackground(Color.DARK_GRAY);
+        access_btn.setForeground(Color.white);
         login_container.add(access_btn);
 
         //CHECK
@@ -96,7 +103,6 @@ public class Ventana extends JFrame {
         JPanel rgstr_container = new JPanel();
         rgstr_container.setBounds(500, 50, 400, 600);
         rgstr_container.setOpaque(true);
-        rgstr_container.setBackground(Color.GRAY);
         rgstr_container.setLayout(null);
         this.add(rgstr_container);
         
@@ -110,10 +116,9 @@ public class Ventana extends JFrame {
 
         //TEXTO
         JLabel term_text = new JLabel("TERMINOS");
-        term_text.setBounds(50, 420, 300, 40);
+        term_text.setBounds(50, 425, 300, 35);
         term_text.setHorizontalAlignment(JLabel.CENTER);
-        term_text.setBackground(Color.darkGray);
-        term_text.setForeground(Color.white);
+        term_text.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         term_text.setOpaque(true);
         rgstr_container.add(term_text);
 
@@ -126,12 +131,17 @@ public class Ventana extends JFrame {
         JLabel bio_tag = new JLabel("BIO");
         bio_tag.setBounds(50, 223, 300, 30);
         bio_tag.setHorizontalAlignment(JLabel.CENTER);
+        bio_tag.setBackground(Color.GRAY);
+        bio_tag.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        bio_tag.setForeground(Color.WHITE);
+        bio_tag.setOpaque(true);
         rgstr_container.add(bio_tag);
 
         JLabel name_tag = new JLabel("NOMBRE DE USUARIO");
-        name_tag.setBounds(50, 130, 300, 40);
+        name_tag.setBounds(50, 140, 300, 25);
         name_tag.setHorizontalAlignment(JLabel.CENTER);
-        name_tag.setBackground(Color.DARK_GRAY);
+        name_tag.setBackground(Color.GRAY);
+        name_tag.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         name_tag.setForeground(Color.WHITE);
         name_tag.setOpaque(true);
         rgstr_container.add(name_tag);
@@ -139,11 +149,15 @@ public class Ventana extends JFrame {
         //CUADRO DE TEXTO
         JTextField name_text = new JTextField();
         name_text.setBounds(50, 175, 300, 40);
+        name_text.setBorder(BorderFactory.createLineBorder(Color.BLACK)); 
+        name_text.setBackground(Color.LIGHT_GRAY);  
         rgstr_container.add(name_text);
 
         //AREA DE TEXTO
         JTextArea bio_text = new JTextArea();
         bio_text.setBounds(50, 260, 300, 80);
+        bio_text.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        bio_text.setBackground(Color.LIGHT_GRAY);
         rgstr_container.add(bio_text);
         
         //CHECK
@@ -177,6 +191,8 @@ public class Ventana extends JFrame {
         JButton register_btn = new JButton("Crear cuenta");
         register_btn.setBounds(50, 540, 300, 40);
         register_btn.setFont(new Font("Arial", Font.BOLD, 20));
+        register_btn.setBackground(Color.DARK_GRAY);
+        register_btn.setForeground(Color.WHITE);
         rgstr_container.add(register_btn);
         
         //GRUPO DE BOTONES
