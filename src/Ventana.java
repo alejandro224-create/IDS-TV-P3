@@ -12,6 +12,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -266,7 +268,15 @@ public class Ventana extends JFrame {
                 { "20451298", "Paola", "Reyes", "paola.ry@example.com", "2", "Mercadotecnia", "Acciones" }
         };
 
-        JTable students = new JTable(table_body, table_head);
+        DefaultTableModel model = new DefaultTableModel(table_body, table_head) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        JTable students = new JTable(model);
+        students.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 
         JScrollPane final_table = new JScrollPane(students);
         final_table.setBounds(90, 280, 740, 300);
