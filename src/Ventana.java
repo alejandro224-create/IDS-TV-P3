@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
@@ -18,9 +20,10 @@ import java.awt.Font;
 
 public class Ventana extends JFrame {
     public Ventana() {
+        // CONFIGURACIONES BASICAS
         this.setVisible(true);
-        this.setSize(1000 ,750);
-        this.setLocation (200, 200);
+        this.setSize(1000, 750);
+        this.setLocation(200, 200);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setMinimumSize(new Dimension(200, 200));
         this.setMaximumSize(new Dimension(1000, 800));
@@ -28,33 +31,39 @@ public class Ventana extends JFrame {
         this.setTitle("Ventana de Prueba");
         this.setLayout(null);
         this.getContentPane().setBackground((Color.black));
-        
-        //PANELS
+
+        //this.login();
+        //this.registro();
+        this.users();
+
+        this.repaint();
+    }
+
+    public void login() {
+        // PANELS
         JPanel login_container = new JPanel();
-        login_container.setSize(400,600);
+        login_container.setSize(400, 600);
         login_container.setLocation(80, 50);
         login_container.setLayout(null);
         this.add(login_container);
-        
-        
-        //TITULO
+
+        // TITULO
         JLabel tag_title = new JLabel();
         tag_title.setText("BIENVENIDO");
         tag_title.setBounds(100, -30, 200, 200);
         tag_title.setBackground(Color.white);
         tag_title.setOpaque(false);
-        tag_title.setFont(new Font("Arial",Font.BOLD,22));
+        tag_title.setFont(new Font("Arial", Font.BOLD, 22));
         tag_title.setHorizontalAlignment(JLabel.CENTER);
         login_container.add(tag_title);
-        
-        
-        //Texto
+
+        // Texto
         JLabel email_text = new JLabel();
         email_text.setText("Ingrese un correo");
         email_text.setSize(150, 30);
         email_text.setLocation(80, 270);
         login_container.add(email_text);
-        
+
         JLabel password_text = new JLabel();
         password_text.setText("Ingrese una contraseña");
         password_text.setSize(150, 30);
@@ -64,25 +73,23 @@ public class Ventana extends JFrame {
         JLabel olv_text = new JLabel("¿Olvido su contraseña?");
         olv_text.setBounds(200, 446, 150, 30);
         login_container.add(olv_text);
-        
-        
-        //CUADRO DE TEXTO
+
+        // CUADRO DE TEXTO
         JTextField email_input = new JTextField();
         email_input.setSize(280, 40);
         email_input.setLocation(65, 300);
         email_input.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         email_input.setBackground(Color.LIGHT_GRAY);
         login_container.add(email_input);
-        
+
         JPasswordField password_input = new JPasswordField();
         password_input.setSize(280, 40);
         password_input.setLocation(65, 400);
         password_input.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         password_input.setBackground(Color.LIGHT_GRAY);
         login_container.add(password_input);
-        
-        
-        //BOTON
+
+        // BOTON
         JButton access_btn = new JButton("Acceder");
         access_btn.setBounds(105, 540, 200, 40);
         access_btn.setFont(new Font("Arial", Font.BOLD, 20));
@@ -90,23 +97,24 @@ public class Ventana extends JFrame {
         access_btn.setForeground(Color.white);
         login_container.add(access_btn);
 
-        //CHECK
+        // CHECK
         JCheckBox rememberme = new JCheckBox("Recordarme");
         rememberme.setBounds(65, 446, 150, 30);
         rememberme.setOpaque(false);
         login_container.add(rememberme);
+    }
 
+    public void registro() {
+        // REGISTRO
 
-        //REGISTRO
-        
-        //PANEL
+        // PANEL
         JPanel rgstr_container = new JPanel();
         rgstr_container.setBounds(500, 50, 400, 600);
         rgstr_container.setOpaque(true);
         rgstr_container.setLayout(null);
         this.add(rgstr_container);
-        
-        //TITLE
+
+        // TITLE
         JLabel rgstr_tag = new JLabel("REGISTRO");
         rgstr_tag.setBounds(50, 50, 300, 40);
         rgstr_tag.setHorizontalAlignment(JLabel.CENTER);
@@ -114,7 +122,7 @@ public class Ventana extends JFrame {
         rgstr_tag.setFont(new Font("Arial", Font.BOLD, 22));
         rgstr_container.add(rgstr_tag);
 
-        //TEXTO
+        // TEXTO
         JLabel term_text = new JLabel("TERMINOS");
         term_text.setBounds(50, 425, 300, 35);
         term_text.setHorizontalAlignment(JLabel.CENTER);
@@ -146,68 +154,134 @@ public class Ventana extends JFrame {
         name_tag.setOpaque(true);
         rgstr_container.add(name_tag);
 
-        //CUADRO DE TEXTO
+        // CUADRO DE TEXTO
         JTextField name_text = new JTextField();
         name_text.setBounds(50, 175, 300, 40);
-        name_text.setBorder(BorderFactory.createLineBorder(Color.BLACK)); 
-        name_text.setBackground(Color.LIGHT_GRAY);  
+        name_text.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        name_text.setBackground(Color.LIGHT_GRAY);
         rgstr_container.add(name_text);
 
-        //AREA DE TEXTO
+        // AREA DE TEXTO
         JTextArea bio_text = new JTextArea();
         bio_text.setBounds(50, 260, 300, 80);
         bio_text.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         bio_text.setBackground(Color.LIGHT_GRAY);
         rgstr_container.add(bio_text);
-        
-        //CHECK
+
+        // CHECK
         JCheckBox opt_sweet = new JCheckBox("Dulce");
         opt_sweet.setBounds(50, 385, 100, 20);
         opt_sweet.setOpaque(false);
         rgstr_container.add(opt_sweet);
-        
+
         JCheckBox opt_salty = new JCheckBox("Salado");
         opt_salty.setBounds(150, 385, 100, 20);
         opt_salty.setOpaque(false);
         rgstr_container.add(opt_salty);
-        
+
         JCheckBox opt_healty = new JCheckBox("Saludable");
         opt_healty.setBounds(250, 385, 100, 20);
         opt_healty.setOpaque(false);
         rgstr_container.add(opt_healty);
-        
-        //LABEL TERMS
+
+        // LABEL TERMS
         JRadioButton accept_terms = new JRadioButton("Acepto los terminos");
         accept_terms.setBounds(50, 470, 150, 20);
         accept_terms.setOpaque(false);
         rgstr_container.add(accept_terms);
-        
+
         JRadioButton reject_terms = new JRadioButton("Rechazo los terminos");
         reject_terms.setBounds(200, 470, 150, 20);
         reject_terms.setOpaque(false);
         rgstr_container.add(reject_terms);
-        
-        //BOTONES
+
+        // BOTONES
         JButton register_btn = new JButton("Crear cuenta");
         register_btn.setBounds(50, 540, 300, 40);
         register_btn.setFont(new Font("Arial", Font.BOLD, 20));
         register_btn.setBackground(Color.DARK_GRAY);
         register_btn.setForeground(Color.WHITE);
         rgstr_container.add(register_btn);
-        
-        //GRUPO DE BOTONES
+
+        // GRUPO DE BOTONES
         ButtonGroup terms = new ButtonGroup();
         terms.add(accept_terms);
         terms.add(reject_terms);
-        
-        //COMBO
-        String [] colonias = {"Parfum","Eau de Toilette","Aua Fraiche","Perfume fougère"};
+
+        // COMBO
+        String[] colonias = { "Parfum", "Eau de Toilette", "Aua Fraiche", "Perfume fougère" };
         JComboBox colonias_combo = new JComboBox<>(colonias);
         colonias_combo.setBounds(50, 500, 300, 30);
         rgstr_container.add(colonias_combo);
-        
-        
-
-        this.repaint();
     }
+
+    public void users() {
+
+        // PANEL
+        JPanel users_panel = new JPanel();
+        users_panel.setBounds(50, 50, 900, 650);
+        users_panel.setBackground(Color.WHITE);
+        users_panel.setLayout(null);
+        this.add(users_panel);
+
+
+        //LISTA 
+        String[] table_head = { "No. Control", "Nombre", "Apellidos", "Correo electronico", "Semestre", "Carrera",
+                "Acciones" };
+
+        Object[][] table_body = {
+                { "20451234", "Luis", "Hernández", "luis.hdz@example.com", "3", "Ingeniería en Sistemas", "Acciones" },
+                { "20457891", "María", "Gómez", "maria.gmz@example.com", "5", "Arquitectura", "Acciones" },
+                { "20453422", "Jorge", "Ramírez", "jorge.rz@example.com", "2", "Contaduría", "Acciones" },
+                { "20458977", "Ana", "López", "ana.lp@example.com", "7", "Administración", "Acciones" },
+                { "20452311", "Carlos", "Martínez", "carlos.mtz@example.com", "4", "Ingeniería Civil", "Acciones" },
+                { "20455678", "Fernanda", "Soto", "fer.soto@example.com", "6", "Diseño Gráfico", "Acciones" },
+                { "20459832", "Ricardo", "Pérez", "ricardo.pz@example.com", "1", "Ingeniería Mecánica", "Acciones" },
+                { "20454490", "Daniela", "Vargas", "daniela.vg@example.com", "8", "Psicología", "Acciones" },
+                { "20457701", "Héctor", "Castro", "hector.cs@example.com", "9", "Derecho", "Acciones" },
+                { "20456642", "Sofía", "Navarro", "sofia.nv@example.com", "3", "Medicina", "Acciones" },
+                { "20453387", "Miguel", "Ortega", "miguel.og@example.com", "10", "Ingeniería Industrial", "Acciones" },
+                { "20451298", "Paola", "Reyes", "paola.ry@example.com", "2", "Mercadotecnia", "Acciones" },
+                { "20451234", "Luis", "Hernández", "luis.hdz@example.com", "3", "Ingeniería en Sistemas", "Acciones" },
+                { "20457891", "María", "Gómez", "maria.gmz@example.com", "5", "Arquitectura", "Acciones" },
+                { "20453422", "Jorge", "Ramírez", "jorge.rz@example.com", "2", "Contaduría", "Acciones" },
+                { "20458977", "Ana", "López", "ana.lp@example.com", "7", "Administración", "Acciones" },
+                { "20452311", "Carlos", "Martínez", "carlos.mtz@example.com", "4", "Ingeniería Civil", "Acciones" },
+                { "20455678", "Fernanda", "Soto", "fer.soto@example.com", "6", "Diseño Gráfico", "Acciones" },
+                { "20459832", "Ricardo", "Pérez", "ricardo.pz@example.com", "1", "Ingeniería Mecánica", "Acciones" },
+                { "20454490", "Daniela", "Vargas", "daniela.vg@example.com", "8", "Psicología", "Acciones" },
+                { "20457701", "Héctor", "Castro", "hector.cs@example.com", "9", "Derecho", "Acciones" },
+                { "20456642", "Sofía", "Navarro", "sofia.nv@example.com", "3", "Medicina", "Acciones" },
+                { "20453387", "Miguel", "Ortega", "miguel.og@example.com", "10", "Ingeniería Industrial", "Acciones" },
+                { "20451298", "Paola", "Reyes", "paola.ry@example.com", "2", "Mercadotecnia", "Acciones" },
+                { "20451234", "Luis", "Hernández", "luis.hdz@example.com", "3", "Ingeniería en Sistemas", "Acciones" },
+                { "20457891", "María", "Gómez", "maria.gmz@example.com", "5", "Arquitectura", "Acciones" },
+                { "20453422", "Jorge", "Ramírez", "jorge.rz@example.com", "2", "Contaduría", "Acciones" },
+                { "20458977", "Ana", "López", "ana.lp@example.com", "7", "Administración", "Acciones" },
+                { "20452311", "Carlos", "Martínez", "carlos.mtz@example.com", "4", "Ingeniería Civil", "Acciones" },
+                { "20455678", "Fernanda", "Soto", "fer.soto@example.com", "6", "Diseño Gráfico", "Acciones" },
+                { "20459832", "Ricardo", "Pérez", "ricardo.pz@example.com", "1", "Ingeniería Mecánica", "Acciones" },
+                { "20454490", "Daniela", "Vargas", "daniela.vg@example.com", "8", "Psicología", "Acciones" },
+                { "20457701", "Héctor", "Castro", "hector.cs@example.com", "9", "Derecho", "Acciones" },
+                { "20456642", "Sofía", "Navarro", "sofia.nv@example.com", "3", "Medicina", "Acciones" },
+                { "20453387", "Miguel", "Ortega", "miguel.og@example.com", "10", "Ingeniería Industrial", "Acciones" },
+                { "20451298", "Paola", "Reyes", "paola.ry@example.com", "2", "Mercadotecnia", "Acciones" }
+        };
+
+        JTable students = new JTable(table_body, table_head);
+
+        JScrollPane final_table = new JScrollPane(students);
+        final_table.setBounds(90, 280, 740, 300);
+        final_table.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        users_panel.add(final_table);
+
+        //TEXTO
+        JLabel user_text = new JLabel("Usuarios");
+        user_text.setBounds(375, 50, 150, 80);
+        user_text.setFont(new Font("Arial", Font.BOLD, 32));
+        users_panel.add(user_text);
+
+
+    }
+
 }
