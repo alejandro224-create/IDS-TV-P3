@@ -12,8 +12,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -277,10 +275,42 @@ public class Ventana extends JFrame {
 
         //TEXTO
         JLabel user_text = new JLabel("Usuarios");
-        user_text.setBounds(375, 50, 150, 80);
+        user_text.setBounds(375, 30, 150, 80);
         user_text.setFont(new Font("Arial", Font.BOLD, 32));
         users_panel.add(user_text);
 
+        JLabel cont_users = new JLabel("Usuarios");
+        cont_users.setBounds(90, 170, 230, 40);
+        cont_users.setFont(new Font("Arial", Font.BOLD, 28));
+        cont_users.setBackground(Color.GRAY);
+        cont_users.setOpaque(true);
+        cont_users.setHorizontalAlignment(JLabel.CENTER);
+        users_panel.add(cont_users);
+
+        JLabel cont_num = new JLabel("36");
+        cont_num.setBounds(90, 200, 230, 40);
+        cont_num.setFont(new Font("Arial", Font.BOLD, 28));
+        cont_num.setBackground(Color.GRAY);
+        cont_num.setOpaque(true);
+        cont_num.setHorizontalAlignment(JLabel.CENTER);
+        users_panel.add(cont_num);
+
+        //BOTONES
+        JButton save_btn = new JButton("Guardar");
+        save_btn.setBounds(650, 220, 80, 40);
+        save_btn.setBackground(Color.DARK_GRAY);
+        save_btn.setOpaque(true);
+        save_btn.setHorizontalAlignment(JLabel.CENTER);
+        save_btn.setForeground(Color.WHITE);
+        users_panel.add(save_btn);
+
+        JButton edit_btn = new JButton("Editar");
+        edit_btn.setBounds(750, 220, 80, 40);
+        edit_btn.setBackground(Color.DARK_GRAY);
+        edit_btn.setOpaque(true);
+        edit_btn.setHorizontalAlignment(JLabel.CENTER);
+        edit_btn.setForeground(Color.WHITE);
+        users_panel.add(edit_btn);
 
     }
 
