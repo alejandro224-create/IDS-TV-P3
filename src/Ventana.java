@@ -37,6 +37,7 @@ public class Ventana extends JFrame {
         this.setLayout(null);
         this.getContentPane().setBackground((Color.black));
 
+        // CAMBIO DE ICONO
         try {
             Image iconImage = ImageIO.read(getClass().getResource("/Images/perro.png"));
 
@@ -46,7 +47,7 @@ public class Ventana extends JFrame {
             e.printStackTrace();
         }
 
-        //MENU
+        // MENU
         JMenuBar barra = new JMenuBar();
         this.setJMenuBar(barra);
 
@@ -76,10 +77,10 @@ public class Ventana extends JFrame {
         JMenuItem file_5 = new JMenuItem("Save As...");
         sub_menu2.add(file_5);
 
-        //SUMMONS
-        //this.login();
-        //this.registro();
-        this.users();
+        // SUMMONS
+        // this.login();
+        // this.registro();
+        // this.users();
         this.setVisible(true);
 
         this.repaint();
@@ -88,22 +89,27 @@ public class Ventana extends JFrame {
     public void login() {
         // PANELS
         JPanel login_container = new JPanel();
-        login_container.setSize(400, 600);
-        login_container.setLocation(80, 50);
+        login_container.setBounds(285, 30, 200, 800);
         login_container.setLayout(null);
         this.add(login_container);
 
         // TITULO
-        JLabel tag_title = new JLabel();
-        tag_title.setText("BIENVENIDO");
-        tag_title.setBounds(100, -30, 200, 200);
-        tag_title.setBackground(Color.white);
-        tag_title.setOpaque(false);
-        tag_title.setFont(new Font("Arial", Font.BOLD, 22));
-        tag_title.setHorizontalAlignment(JLabel.CENTER);
-        login_container.add(tag_title);
+        /*
+         * JLabel tag_title = new JLabel();
+         * tag_title.setText("BIENVENIDO");
+         * tag_title.setBounds(100, -30, 200, 200);
+         * tag_title.setBackground(Color.white);
+         * tag_title.setOpaque(false);
+         * tag_title.setFont(new Font("Arial", Font.BOLD, 22));
+         * tag_title.setHorizontalAlignment(JLabel.CENTER);
+         * login_container.add(tag_title);
+         */
 
-        // Texto
+        // IMAGENES
+
+        // ICONOS
+
+        // TEXTO
         JLabel email_text = new JLabel();
         email_text.setText("Ingrese un correo");
         email_text.setSize(150, 30);
@@ -270,8 +276,7 @@ public class Ventana extends JFrame {
         users_panel.setLayout(null);
         this.add(users_panel);
 
-
-        //LISTA 
+        // LISTA
         String[] table_head = { "No. Control", "Nombre", "Apellidos", "Correo electronico", "Semestre", "Carrera",
                 "Acciones" };
 
@@ -329,7 +334,7 @@ public class Ventana extends JFrame {
         final_table.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         users_panel.add(final_table);
 
-        //TEXTO
+        // TEXTO
         JLabel user_text = new JLabel("Usuarios");
         user_text.setBounds(375, 30, 150, 80);
         user_text.setFont(new Font("Arial", Font.BOLD, 32));
@@ -351,7 +356,7 @@ public class Ventana extends JFrame {
         cont_num.setHorizontalAlignment(JLabel.CENTER);
         users_panel.add(cont_num);
 
-        //BOTONES
+        // BOTONES
         JButton save_btn = new JButton("Guardar");
         save_btn.setBounds(650, 220, 80, 40);
         save_btn.setBackground(Color.DARK_GRAY);
@@ -369,6 +374,5 @@ public class Ventana extends JFrame {
         users_panel.add(edit_btn);
 
     }
-
 
 }
