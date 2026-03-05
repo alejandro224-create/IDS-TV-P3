@@ -5,6 +5,9 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -21,7 +24,6 @@ import java.awt.Font;
 public class Ventana extends JFrame {
     public Ventana() {
         // CONFIGURACIONES BASICAS
-        this.setVisible(true);
         this.setSize(1000, 750);
         this.setLocation(200, 200);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,9 +34,41 @@ public class Ventana extends JFrame {
         this.setLayout(null);
         this.getContentPane().setBackground((Color.black));
 
+        //MENU
+        JMenuBar barra = new JMenuBar();
+        this.setJMenuBar(barra);
+
+        JMenu menu1 = new JMenu("Archivo");
+        barra.add(menu1);
+
+        JMenu menu2 = new JMenu("Opciones");
+        barra.add(menu2);
+
+        JMenuItem file_m1 = new JMenuItem("Abrir");
+        menu1.add(file_m1);
+
+        JMenuItem file_m2 = new JMenuItem("Nuevo");
+        menu1.add(file_m2);
+
+        JMenuItem file_m3 = new JMenuItem("Cerrar");
+        menu1.add(file_m3);
+
+        menu1.addSeparator();
+
+        JMenu sub_menu2 = new JMenu("Guardar");
+        menu1.add(sub_menu2);
+
+        JMenuItem file_4 = new JMenuItem("Guardar");
+        sub_menu2.add(file_4);
+
+        JMenuItem file_5 = new JMenuItem("Guardar como");
+        sub_menu2.add(file_5);
+
+        //SUMMONS
         //this.login();
         //this.registro();
         this.users();
+        this.setVisible(true);
 
         this.repaint();
     }
@@ -323,5 +357,6 @@ public class Ventana extends JFrame {
         users_panel.add(edit_btn);
 
     }
+
 
 }
