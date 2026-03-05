@@ -1,3 +1,4 @@
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -20,6 +21,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
+import java.io.IOException;
 
 public class Ventana extends JFrame {
     public Ventana() {
@@ -34,34 +37,43 @@ public class Ventana extends JFrame {
         this.setLayout(null);
         this.getContentPane().setBackground((Color.black));
 
+        try {
+            Image iconImage = ImageIO.read(getClass().getResource("/Images/perro.png"));
+
+            this.setIconImage(iconImage);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         //MENU
         JMenuBar barra = new JMenuBar();
         this.setJMenuBar(barra);
 
-        JMenu menu1 = new JMenu("Archivo");
+        JMenu menu1 = new JMenu("File");
         barra.add(menu1);
 
-        JMenu menu2 = new JMenu("Opciones");
+        JMenu menu2 = new JMenu("Edit");
         barra.add(menu2);
 
-        JMenuItem file_m1 = new JMenuItem("Abrir");
+        JMenuItem file_m1 = new JMenuItem("New");
         menu1.add(file_m1);
 
-        JMenuItem file_m2 = new JMenuItem("Nuevo");
+        JMenuItem file_m2 = new JMenuItem("Open");
         menu1.add(file_m2);
 
-        JMenuItem file_m3 = new JMenuItem("Cerrar");
+        JMenuItem file_m3 = new JMenuItem("Close");
         menu1.add(file_m3);
 
         menu1.addSeparator();
 
-        JMenu sub_menu2 = new JMenu("Guardar");
+        JMenu sub_menu2 = new JMenu("Save");
         menu1.add(sub_menu2);
 
-        JMenuItem file_4 = new JMenuItem("Guardar");
+        JMenuItem file_4 = new JMenuItem("Save");
         sub_menu2.add(file_4);
 
-        JMenuItem file_5 = new JMenuItem("Guardar como");
+        JMenuItem file_5 = new JMenuItem("Save As...");
         sub_menu2.add(file_5);
 
         //SUMMONS
