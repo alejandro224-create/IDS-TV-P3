@@ -39,7 +39,7 @@ public class Ventana extends JFrame {
 
         // CAMBIO DE ICONO
         try {
-            Image iconImage = ImageIO.read(getClass().getResource("/Images/perro.png"));
+            Image iconImage = ImageIO.read(getClass().getResource("/imagenes/perro.png"));
 
             this.setIconImage(iconImage);
 
@@ -81,6 +81,7 @@ public class Ventana extends JFrame {
         // this.login();
         // this.registro();
         // this.users();
+        this.calculadora();
         this.setVisible(true);
 
         this.repaint();
@@ -374,5 +375,41 @@ public class Ventana extends JFrame {
         users_panel.add(edit_btn);
 
     }
+
+    public void calculadora() {
+        JPanel calculator_container = new JPanel();
+        calculator_container.setBounds(300, 80, 350, 455);
+        calculator_container.setLayout(null);
+        calculator_container.setBackground(Color.DARK_GRAY);
+        this.add(calculator_container);
+
+        JLabel text_calculator = new JLabel("180.00");
+        text_calculator.setBounds(10, 10, 330, 40);
+        text_calculator.setOpaque(true);
+        text_calculator.setBackground(Color.WHITE);
+        text_calculator.setFont(new Font("Arial", Font.BOLD, 22));
+        text_calculator.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        calculator_container.add(text_calculator);
+
+        int cor_x = 25, cor_y = 60;
+        String [] botones = {"CE","","","","7","8","9","/","4","5","6","*","1","2","3","-",".","0","=","+"};
+
+        for (int i = 0; i < 20; i++) {
+            JButton ce = new JButton(botones[i]);
+            ce.setBounds(cor_x, cor_y, 60, 60);
+            ce.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+            calculator_container.add(ce);
+
+            cor_x += 80;
+            calculator_container.add(ce);
+
+            if (cor_x >= 330) {
+                cor_x = 25;
+                cor_y += 80;
+            }
+        }
+    }
+
+    //
 
 }
