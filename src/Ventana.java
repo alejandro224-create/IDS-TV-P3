@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -16,11 +17,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -85,8 +88,9 @@ public class Ventana extends JFrame {
         // this.login();
         // this.registro();
         // this.users();
-        //this.calculadora();
-        this.calculadora_layaout(); 
+        // this.calculadora();
+        // this.calculadora_layaout();
+        this.interes();
         this.setVisible(true);
 
         this.repaint();
@@ -397,7 +401,8 @@ public class Ventana extends JFrame {
         calculator_container.add(text_calculator);
 
         int cor_x = 25, cor_y = 60;
-        String [] botones = {"CE","","","","7","8","9","/","4","5","6","*","1","2","3","-",".","0","=","+"};
+        String[] botones = { "CE", "", "", "", "7", "8", "9", "/", "4", "5", "6", "*", "1", "2", "3", "-", ".", "0",
+                "=", "+" };
 
         for (int i = 0; i < 20; i++) {
             JButton ce = new JButton(botones[i]);
@@ -432,43 +437,119 @@ public class Ventana extends JFrame {
         field.setBackground(Color.WHITE);
         field.setFont(new Font("Arial", Font.BOLD, 22));
         field.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
-        calcu_layaout.add(field,BorderLayout.NORTH);
+        calcu_layaout.add(field, BorderLayout.NORTH);
 
         JPanel centro = new JPanel();
         centro.setBackground(Color.red);
-        centro.setLayout(new GridLayout(4,3));
-        calcu_layaout.add(centro,BorderLayout.CENTER);
+        centro.setLayout(new GridLayout(4, 3));
+        calcu_layaout.add(centro, BorderLayout.CENTER);
 
-        String [] botones = {"9","8","7","6","5","4","3","2","1","","0","."};
+        String[] botones = { "9", "8", "7", "6", "5", "4", "3", "2", "1", "", "0", "." };
 
         for (int i = 0; i < botones.length; i++) {
             JButton btns = new JButton(botones[i]);
-            //btns.setSize(20, 20);
+            // btns.setSize(20, 20);
             btns.setFont(new Font("Arial", Font.BOLD, 22));
             centro.add(btns);
         }
 
         JPanel sidebar = new JPanel();
         sidebar.setBackground(Color.LIGHT_GRAY);
-        sidebar.setLayout(new GridLayout(6,1));
-        calcu_layaout.add(sidebar,BorderLayout.EAST);
+        sidebar.setLayout(new GridLayout(6, 1));
+        calcu_layaout.add(sidebar, BorderLayout.EAST);
 
-        String [] botones2 = {"+","-","*","/","=","CE"};
+        String[] botones2 = { "+", "-", "*", "/", "=", "CE" };
 
         for (int i = 0; i < botones2.length; i++) {
-            
+
             JButton btns = new JButton();
             btns.setSize(50, 50);
             btns.setFont(new Font("Arial", Font.BOLD, 22));
             sidebar.add(btns);
         }
 
-
-
-
-
     }
 
+    public void interes() {
 
+        /* PANEL PRINCIPAL */
+        JPanel interes_layaout = new JPanel();
+        interes_layaout.setBounds(250, 50, 500, 400);
+        interes_layaout.setBackground(Color.LIGHT_GRAY);
+        interes_layaout.setLayout(new BorderLayout(10, 10));
+        this.add(interes_layaout);
 
+        /* TITULO */
+        JLabel titulo = new JLabel("Interés", JLabel.LEFT);
+        titulo.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 22));
+        titulo.setForeground(Color.BLACK);
+        titulo.setHorizontalAlignment(JLabel.CENTER);
+        interes_layaout.add(titulo, BorderLayout.NORTH);
+
+        JPanel panelDatos = new JPanel();
+        panelDatos.setLayout(new GridLayout(4, 2, 10, 9));
+        panelDatos.setBackground(Color.LIGHT_GRAY);
+
+        panelDatos.setBorder(BorderFactory.createTitledBorder(
+                BorderFactory.createLineBorder(Color.DARK_GRAY, 3),
+                "Calcular Interés"));
+
+        JLabel capitalLabel = new JLabel("Capital:");
+        capitalLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        JTextField capitalField = new JTextField();
+
+        JLabel tiempoLabel = new JLabel("Tiempo:");
+        tiempoLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        JTextField tiempoField = new JTextField();
+
+        JLabel tasaLabel = new JLabel("Tasa Interés:");
+        tasaLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        JTextField tasaField = new JTextField();
+
+        panelDatos.add(capitalLabel);
+        panelDatos.add(capitalField);
+        panelDatos.add(tiempoLabel);
+        panelDatos.add(tiempoField);
+        panelDatos.add(tasaLabel);
+        panelDatos.add(tasaField);
+
+        /* PANEL BOTONES */
+        JPanel panelBotones = new JPanel(new FlowLayout());
+        panelBotones.setBackground(Color.LIGHT_GRAY);
+
+        JButton calcular = new JButton("Calcular");
+        JButton cancelar = new JButton("Cancelar");
+
+        panelBotones.add(calcular);
+        panelBotones.add(cancelar);
+
+        panelDatos.add(panelBotones);
+
+        interes_layaout.add(panelDatos, BorderLayout.CENTER);
+
+        /* PANEL ROJO (RESULTADOS) */
+        JPanel panelResultados = new JPanel();
+        panelResultados.setLayout(new GridLayout(2, 2, 10, 12));
+        panelResultados.setBackground(Color.LIGHT_GRAY);
+
+        panelResultados.setBorder(BorderFactory.createTitledBorder(
+                BorderFactory.createLineBorder(Color.DARK_GRAY, 3),
+                "Resultados"));
+
+        JLabel interesLabel = new JLabel("Interés:");
+        JTextField interesField = new JTextField();
+        interesField.setEditable(false);
+
+        JLabel montoLabel = new JLabel("Monto:");
+        JTextField montoField = new JTextField();
+        montoField.setEditable(false);
+
+        panelResultados.add(interesLabel);
+        panelResultados.add(interesField);
+        panelResultados.add(montoLabel);
+        panelResultados.add(montoField);
+
+        interes_layaout.add(panelResultados, BorderLayout.SOUTH);
+
+    }
 }
