@@ -1,6 +1,7 @@
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -17,6 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
@@ -472,14 +474,14 @@ public class Ventana extends JFrame {
 
     public void interes() {
 
-        /* PANEL PRINCIPAL */
+        // PANEL PRINCIPAL
         JPanel interes_layaout = new JPanel();
         interes_layaout.setBounds(250, 50, 500, 400);
         interes_layaout.setBackground(Color.LIGHT_GRAY);
         interes_layaout.setLayout(new BorderLayout(10, 10));
         this.add(interes_layaout);
 
-        /* TITULO */
+        // TITULO
         JLabel titulo = new JLabel("Interés", JLabel.LEFT);
         titulo.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 22));
         titulo.setForeground(Color.BLACK);
@@ -513,16 +515,39 @@ public class Ventana extends JFrame {
         panelDatos.add(tasaLabel);
         panelDatos.add(tasaField);
 
-        /* PANEL BOTONES */
+        //PANEL BOTONES
         JPanel panelBotones = new JPanel(new FlowLayout());
         panelBotones.setBackground(Color.LIGHT_GRAY);
 
+        //BOTON CALCULAR
         JButton calcular = new JButton("Calcular");
+
+        //Cargar y escalar icono
+        ImageIcon iconoCalcular = new ImageIcon(getClass().getResource("/imagenes/guardar.jpg"));
+        Image imgCalcular = iconoCalcular.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        calcular.setIcon(new ImageIcon(imgCalcular));
+
+        // Posición texto respecto al icono
+        calcular.setHorizontalTextPosition(SwingConstants.RIGHT);
+        calcular.setVerticalTextPosition(SwingConstants.CENTER);
+
+        /* BOTON CANCELAR */
         JButton cancelar = new JButton("Cancelar");
 
+        // Cargar y escalar icono
+        ImageIcon iconoCancelar = new ImageIcon(getClass().getResource("/imagenes/cancelar.jpg"));
+        Image imgCancelar = iconoCancelar.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        cancelar.setIcon(new ImageIcon(imgCancelar));
+
+        // Posición texto respecto al icono
+        cancelar.setHorizontalTextPosition(SwingConstants.RIGHT);
+        cancelar.setVerticalTextPosition(SwingConstants.CENTER);
+
+        /* AGREGAR BOTONES AL PANEL */
         panelBotones.add(calcular);
         panelBotones.add(cancelar);
 
+        /* AGREGAR PANEL DE BOTONES */
         panelDatos.add(panelBotones);
 
         interes_layaout.add(panelDatos, BorderLayout.CENTER);
