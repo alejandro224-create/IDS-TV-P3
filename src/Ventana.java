@@ -22,25 +22,29 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 
 public class Ventana extends JFrame {
     public Ventana() {
         // CONFIGURACIONES BASICAS
-        this.setSize(1000, 800);
-        this.setLocation(200, 200);
+        this.setBounds(0, 0, 1000, 800);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setMinimumSize(new Dimension(200, 200));
-        this.setMaximumSize(new Dimension(1000, 800));
+        // this.setMinimumSize(new Dimension(200, 200));
+        // this.setMaximumSize(new Dimension(1000, 800));
         this.setLocationRelativeTo(null);
         this.setTitle("Ventana de Prueba");
         this.setLayout(null);
@@ -92,7 +96,8 @@ public class Ventana extends JFrame {
         // this.users();
         // this.calculadora();
         // this.calculadora_layaout();
-        this.interes();
+        // this.interes();
+        this.pintar();
         this.setVisible(true);
 
         this.repaint();
@@ -476,7 +481,7 @@ public class Ventana extends JFrame {
 
         // PANEL PRINCIPAL
         JPanel interes_layaout = new JPanel();
-        interes_layaout.setBounds(250, 50, 500, 400);
+        interes_layaout.setBounds(250, 200, 500, 400);
         interes_layaout.setBackground(Color.LIGHT_GRAY);
         interes_layaout.setLayout(new BorderLayout(10, 10));
         this.add(interes_layaout);
@@ -515,14 +520,14 @@ public class Ventana extends JFrame {
         panelDatos.add(tasaLabel);
         panelDatos.add(tasaField);
 
-        //PANEL BOTONES
+        // PANEL BOTONES
         JPanel panelBotones = new JPanel(new FlowLayout());
         panelBotones.setBackground(Color.LIGHT_GRAY);
 
-        //BOTON CALCULAR
+        // BOTON CALCULAR
         JButton calcular = new JButton("Calcular");
 
-        //Cargar y escalar icono
+        // Cargar y escalar icono
         ImageIcon iconoCalcular = new ImageIcon(getClass().getResource("/imagenes/guardar.jpg"));
         Image imgCalcular = iconoCalcular.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         calcular.setIcon(new ImageIcon(imgCalcular));
@@ -576,5 +581,58 @@ public class Ventana extends JFrame {
 
         interes_layaout.add(panelResultados, BorderLayout.SOUTH);
 
+    }
+
+    public void pintar() {
+        JPanel pane = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+
+                Graphics2D g2d = (Graphics2D) g;
+
+                // g2d.drawLine(0, 0, 1000, 700);
+
+                g2d.setStroke(new BasicStroke(3));
+                g2d.setColor(Color.BLUE);
+                g2d.drawOval(225, 200, 150, 70);
+
+                g2d.setStroke(new BasicStroke(3));
+                g2d.setColor(Color.MAGENTA);
+                g2d.drawPolygon(new int[] { 300, 100, 500 }, new int[] { 100, 300, 300 }, 3);
+
+                g2d.setColor(Color.BLACK);
+                g2d.drawRect(550, 200, 100, 100);
+
+                g2d.drawRoundRect(700, 200, 100, 100, 10, 10);
+
+                g2d.drawArc(715, 160, 70, 80, 0, 180);
+
+                g2d.setFont(new Font("Arial", Font.BOLD, 30));
+                g2d.drawString("Hola mundo", 100, 100);
+
+                g2d.fillOval(500, 500, 150, 70);
+
+                g2d.fillPolygon(new int[] { 300, 100, 500 }, new int[] { 400, 600, 600 }, 3);
+
+                g2d.fillRect(550, 350, 100, 100);
+
+                g2d.fillRoundRect(700, 350, 100, 100, 10, 10);
+
+                g2d.fillArc(715, 310, 70, 80, 0, 180);
+
+                BufferedImage image;
+                try {
+                    image = ImageIO.read(new File("src/imagenes/perro.png"));
+                    g2d.drawImage(image, 0, 0, null);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        };
+        pane.setBounds(0, 0, 1000, 800);
+        this.add(pane);
     }
 }
