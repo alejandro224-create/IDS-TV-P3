@@ -1,5 +1,7 @@
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -7,10 +9,10 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -19,33 +21,28 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
 
 public class Ventana extends JFrame {
     public Ventana() {
         // CONFIGURACIONES BASICAS
         this.setBounds(0, 0, 1000, 800);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // this.setMinimumSize(new Dimension(200, 200));
-        // this.setMaximumSize(new Dimension(1000, 800));
-        this.setLocationRelativeTo(null);
         this.setTitle("Ventana de Prueba");
         this.setLayout(null);
         this.getContentPane().setBackground((Color.black));
@@ -97,9 +94,11 @@ public class Ventana extends JFrame {
         // this.calculadora();
         // this.calculadora_layaout();
         // this.interes();
-        this.pintar();
-        this.setVisible(true);
+        // this.pintar();
+        this.RegistroUsuario();
 
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
         this.repaint();
     }
 
@@ -634,5 +633,104 @@ public class Ventana extends JFrame {
         };
         pane.setBounds(0, 0, 1000, 800);
         this.add(pane);
+    }
+
+    public void RegistroUsuario() {
+        // PANEL CENTRAL
+        JPanel panelCentral = new JPanel();
+        panelCentral.setBounds(40, 20, 900, 700);
+        panelCentral.setLayout(new GridLayout(2,2,10,10));
+        panelCentral.setBackground(Color.LIGHT_GRAY);
+        panelCentral.setBorder(new TitledBorder("Registro de Usuarios"));
+
+        this.add(panelCentral);
+
+        // DATOS GENERALES
+        JPanel Datos_generales = new JPanel();
+        Datos_generales.setLayout(new GridLayout(6, 2, 5, 5));
+        Datos_generales.setBorder(new TitledBorder("Datos generales"));
+
+        Datos_generales.add(new JLabel("Nombres: "));
+        Datos_generales.add(new JTextField());
+
+        Datos_generales.add(new JLabel("Apellidos: "));
+        Datos_generales.add(new JTextField());
+
+        Datos_generales.add(new JLabel(" DNI / Identificacion: "));
+        Datos_generales.add(new JTextField());
+
+        Datos_generales.add(new JLabel("Fecha de nacimiento"));
+        Datos_generales.add(new JTextField());
+
+        Datos_generales.add(new JLabel("Email: "));
+        Datos_generales.add(new JTextField());
+
+        // BLOQUE DE SELECCION DE SEXO
+        Datos_generales.add(new JLabel("Sexo"));
+
+        JPanel panelGenero = new JPanel();
+        panelGenero.setLayout(new BoxLayout(panelGenero, BoxLayout.Y_AXIS));
+
+        JRadioButton masculino = new JRadioButton("Masculino");
+        JRadioButton femenino = new JRadioButton("Femenino");
+
+        ButtonGroup grupo = new ButtonGroup();
+        grupo.add(masculino);
+        grupo.add(femenino);
+
+        panelGenero.add(masculino);
+        panelGenero.add(femenino);
+        Datos_generales.add(panelGenero);
+
+        panelCentral.add(Datos_generales);
+
+        // PERFIL
+        JPanel perfilUsuario = new JPanel();
+        perfilUsuario.setLayout(new BoxLayout(perfilUsuario, BoxLayout.Y_AXIS));
+        perfilUsuario.setBorder(new TitledBorder("Perfil del Usuario"));
+
+        JLabel imagen = new JLabel("Imagen");
+        imagen.setHorizontalAlignment(SwingConstants.CENTER);
+
+        JCheckBox mostrarFoto = new JCheckBox("Mostrar foto de perfil");
+        JCheckBox mostrarFecha = new JCheckBox("Mostrar fecha de nacimiento");
+
+        perfilUsuario.add(imagen);
+        perfilUsuario.add(Box.createVerticalStrut(20));
+        perfilUsuario.add(mostrarFoto);
+        perfilUsuario.add(mostrarFecha);
+
+        panelCentral.add(perfilUsuario);
+
+        // DATOS OPCIONALES
+        JPanel datosOpcionales = new JPanel();
+        datosOpcionales.setLayout(new GridLayout(1, 2, 10, 10));
+        datosOpcionales.setBorder(new TitledBorder("Datos Opcionales"));
+
+        JTextArea descripcion = new JTextArea();
+        JScrollPane scrollDescripcion = new JScrollPane(descripcion);
+
+        String[] preferencias = { "Cantar", "Escuchar música", "Leer", "Deportes", "Otros" };
+        JList<String> listaPreferencias = new JList<>(preferencias);
+        JScrollPane scrollLista = new JScrollPane(listaPreferencias);
+
+        datosOpcionales.add(scrollDescripcion);
+        datosOpcionales.add(scrollLista);
+
+        panelCentral.add(datosOpcionales);
+
+        //BOTONES
+        JPanel panelBotones = new JPanel();
+        panelBotones.setLayout(new BoxLayout(panelBotones, BoxLayout.Y_AXIS));
+
+        JButton btnNuevo = new JButton("Nuevo");
+        JButton btnGuardar = new JButton("Guadrar");
+        JButton btnSalir = new JButton("Salir");
+
+        panelBotones.add(btnNuevo);
+        panelBotones.add(btnGuardar);
+        panelBotones.add(btnSalir);
+
+        panelCentral.add(panelBotones);
     }
 }
