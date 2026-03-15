@@ -95,7 +95,8 @@ public class Ventana extends JFrame {
         // this.calculadora_layaout();
         // this.interes();
         // this.pintar();
-        this.RegistroUsuario();
+        // this.RegistroUsuario();
+        this.casa();
 
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -639,7 +640,7 @@ public class Ventana extends JFrame {
         // PANEL CENTRAL
         JPanel panelCentral = new JPanel();
         panelCentral.setBounds(40, 20, 900, 700);
-        panelCentral.setLayout(new GridLayout(2,2,10,10));
+        panelCentral.setLayout(new GridLayout(2, 2, 10, 10));
         panelCentral.setBackground(Color.LIGHT_GRAY);
         panelCentral.setBorder(new TitledBorder("Registro de Usuarios"));
 
@@ -719,7 +720,7 @@ public class Ventana extends JFrame {
 
         panelCentral.add(datosOpcionales);
 
-        //BOTONES
+        // BOTONES
         JPanel panelBotones = new JPanel();
         panelBotones.setLayout(new BoxLayout(panelBotones, BoxLayout.Y_AXIS));
 
@@ -732,5 +733,124 @@ public class Ventana extends JFrame {
         panelBotones.add(btnSalir);
 
         panelCentral.add(panelBotones);
+    }
+
+    public void casa() {
+        JPanel panel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+
+                Graphics2D g2d = (Graphics2D) g;
+
+                // CIELO
+                g.setColor(new Color(0, 180, 220));
+                g.fillRect(0, 0, 900, 400);
+
+                //PARTE TRACERA CERCA
+                g.setColor(Color.decode("#CC9945"));
+                g.fillRect(160, 340, 600, 40);
+
+                // PASTO
+                g.setColor(new Color(90, 140, 40));
+                g.fillRect(0, 400, 900, 60);
+
+                // TIERRA
+                g.setColor(new Color(110, 80, 40));
+                g.fillRect(0, 460, 900, 140);
+
+                // BASE DE LA CASA
+                g.setColor(Color.GRAY);
+                g.fillRect(294, 370, 300, 30);
+
+                // CUERPO DE LA CASA
+                g.setColor(new Color(235, 200, 120));
+                g.fillRect(320, 260, 260, 110);
+
+                //SOMBRA TECHO
+                int xSombra[] = {320, 580, 580};
+                int ySombra[] = {260, 290, 260};
+
+                g.setColor(new Color(189, 157, 83));
+                g.fillPolygon(xSombra, ySombra, 3);
+
+                //SOMBRA VENTANA
+                
+
+                // LINEAS DE MADERA
+                g.setColor(new Color(114, 95, 49));
+                for (int y = 270; y < 360; y += 15) {
+                    g.drawLine(320, y, 580, y);
+                }
+
+                // TECHO GRANDE
+                int xTecho[] = { 280, 400, 620 };
+                int yTecho[] = { 260, 130, 260 };
+
+                g.setColor(new Color(170, 30, 30));
+                g.fillPolygon(xTecho, yTecho, 3);
+
+                // CHIMENEA
+                g.setColor(Color.GRAY);
+                g.fillRect(520, 170, 40, 70);
+
+                g.setColor(Color.DARK_GRAY);
+                g.fillRect(510, 160, 60, 15);
+
+                // PUERTA
+                g.setColor(new Color(140, 90, 20));
+                g.fillRect(340, 280, 70, 90);
+
+                // PERILLA
+                g.setColor(Color.WHITE);
+                g.fillOval(390, 325, 10, 10);
+
+                //MARCO DE PUERTA
+                g.setColor(Color.decode("#5C2F09"));
+                g.fillRect(340, 280, 5, 90);
+                g.fillRect(340, 280, 70, 5);
+                g.fillRect(405, 280, 5, 90);
+
+                // VENTANA
+                g.setColor(new Color(180, 30, 30));
+                g.fillRect(450, 280, 80, 70);
+
+                // CUADROS DE LA VENTANA
+                g.setColor(Color.WHITE);
+                g.fillRect(455, 285, 30, 25);
+                g.fillRect(495, 285, 30, 25);
+                g.fillRect(455, 320, 30, 25);
+                g.fillRect(495, 320, 30, 25);
+
+                // BASE VENTANA
+                g.setColor(Color.DARK_GRAY);
+                g.fillRect(445, 350, 90, 10);
+
+
+
+                // CERCA IZQUIERDA
+                g.setColor(new Color(240, 180, 80));
+                for (int x = 160; x < 300; x += 30) {
+
+                    int xp[] = { x, x + 10, x + 20 };
+                    int yp[] = { 330, 300, 330 };
+
+                    g.fillPolygon(xp, yp, 3);
+                    g.fillRect(x, 330, 20, 70);
+                }
+
+                // CERCA DERECHA
+                for (int x = 590; x < 750; x += 30) {
+
+                    int xp[] = { x, x + 10, x + 20 };
+                    int yp[] = { 330, 300, 330 };
+
+                    g.fillPolygon(xp, yp, 3);
+                    g.fillRect(x, 330, 20, 70);
+                }
+            }
+        };
+        panel.setBounds(30, 30, 800, 600);
+        this.add(panel);
     }
 }
