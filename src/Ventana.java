@@ -185,13 +185,14 @@ public class Ventana extends JFrame {
                 String email = email_input.getText();
                 String password = password_input.getText();
 
+
                 if (email.equals("")) {
                     email_input.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
                 }else {
                     email_input.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
                 }
 
-                if (password.equals("")) {
+                if (password.trim().isEmpty() || password.trim().length() < 6) {
                     password_input.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
                 }else {
                     password_input.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
@@ -343,7 +344,7 @@ public class Ventana extends JFrame {
                     name_text.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
                 }
 
-                if (bio.trim().isEmpty() || bio.trim().length() < 5) {
+                if (bio.trim().isEmpty() && bio.trim().length() < 5) {
                     bio_text.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
                 }else {
                     bio_text.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
@@ -351,12 +352,8 @@ public class Ventana extends JFrame {
 
                 if (!algunoSeleccionado) {
                     opt_sweet.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-                    //opt_salty.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-                    //opt_healty.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
                 }else {
                     opt_sweet.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
-                    //opt_salty.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
-                    //opt_healty.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
                 }
 
                 if (!terminosSeleccionados) {
