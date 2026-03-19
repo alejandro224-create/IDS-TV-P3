@@ -13,6 +13,7 @@ import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -122,7 +123,7 @@ public class Ventana extends JFrame {
         this.add(login_container);
 
         // TITULO
-        
+
         JLabel tag_title = new JLabel();
         tag_title.setText("BIENVENIDO");
         tag_title.setBounds(100, 140, 200, 200);
@@ -131,12 +132,12 @@ public class Ventana extends JFrame {
         tag_title.setFont(new Font("Arial", Font.BOLD, 22));
         tag_title.setHorizontalAlignment(JLabel.CENTER);
         login_container.add(tag_title);
-         
 
         // IMAGENES
 
-
         // ICONOS
+
+        // OTROS
 
         // TEXTO
         JLabel email_text = new JLabel();
@@ -185,18 +186,29 @@ public class Ventana extends JFrame {
                 String email = email_input.getText();
                 String password = password_input.getText();
 
+                String correo = "fake@gmail.com";
+                String contraseña = "prueba528";
 
-                if (email.equals("")) {
-                    email_input.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-                }else {
-                    email_input.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
+                boolean emailValido = !email.equals("");
+                boolean passwordValido = !password.trim().isEmpty() && password.trim().length() >= 6;
+
+                // Validar email
+                email_input.setBorder(BorderFactory.createLineBorder(
+                        emailValido ? Color.GREEN : Color.RED, 3));
+
+                // Validar password
+                password_input.setBorder(BorderFactory.createLineBorder(
+                        passwordValido ? Color.GREEN : Color.RED, 3));
+
+                // Validación general
+                if (!emailValido || !passwordValido) {
+                    JOptionPane.showMessageDialog(null, "Completa correctamente los campos");
+                } else if (!email.equals(correo) || !password.equals(contraseña)) {
+                    JOptionPane.showMessageDialog(null, "Correo o contraseña incorrectas (Esta maaaaal)", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Bienvenido");
                 }
 
-                if (password.trim().isEmpty() || password.trim().length() < 6) {
-                    password_input.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-                }else {
-                    password_input.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
-                }
             }
         });
 
@@ -337,31 +349,29 @@ public class Ventana extends JFrame {
                 Boolean algunoSeleccionado = check || check2 || check3;
                 Boolean terminosSeleccionados = accept || reject;
 
-                
                 if (name.equals("")) {
                     name_text.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-                }else {
+                } else {
                     name_text.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
                 }
 
-                if (bio.trim().isEmpty() && bio.trim().length() < 5) {
+                if (bio.trim().isEmpty() || bio.trim().length() < 5) {
                     bio_text.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-                }else {
+                } else {
                     bio_text.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
-                } 
+                }
 
                 if (!algunoSeleccionado) {
                     opt_sweet.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-                }else {
+                } else {
                     opt_sweet.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
                 }
 
                 if (!terminosSeleccionados) {
                     accept_terms.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-                }else {
+                } else {
                     accept_terms.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
                 }
-
 
             }
         });
