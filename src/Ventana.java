@@ -21,6 +21,7 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -182,13 +183,18 @@ public class Ventana extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 String email = email_input.getText();
+                String password = password_input.getText();
 
                 if (email.equals("")) {
-                    System.out.println("vacio");
-
                     email_input.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
                 }else {
                     email_input.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
+                }
+
+                if (password.equals("")) {
+                    password_input.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+                }else {
+                    password_input.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
                 }
             }
         });
@@ -279,6 +285,7 @@ public class Ventana extends JFrame {
         opt_sweet.setBounds(50, 385, 100, 20);
         opt_sweet.setOpaque(false);
         opt_sweet.setForeground(Color.WHITE);
+        opt_sweet.setBorderPainted(true);
         rgstr_container.add(opt_sweet);
 
         JCheckBox opt_salty = new JCheckBox("Salado");
@@ -298,6 +305,7 @@ public class Ventana extends JFrame {
         accept_terms.setBounds(50, 470, 150, 20);
         accept_terms.setOpaque(false);
         accept_terms.setForeground(Color.WHITE);
+        accept_terms.setBorderPainted(true);
         rgstr_container.add(accept_terms);
 
         JRadioButton reject_terms = new JRadioButton("Rechazo los terminos");
@@ -313,6 +321,53 @@ public class Ventana extends JFrame {
         register_btn.setBackground(Color.DARK_GRAY);
         register_btn.setForeground(Color.WHITE);
         rgstr_container.add(register_btn);
+
+        register_btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = name_text.getText();
+                String bio = bio_text.getText();
+                Boolean accept = accept_terms.isSelected();
+                Boolean reject = reject_terms.isSelected();
+                Boolean check = opt_sweet.isSelected();
+                Boolean check2 = opt_salty.isSelected();
+                Boolean check3 = opt_healty.isSelected();
+
+                Boolean algunoSeleccionado = check || check2 || check3;
+                Boolean terminosSeleccionados = accept || reject;
+
+                
+                if (name.equals("")) {
+                    name_text.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+                }else {
+                    name_text.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
+                }
+
+                if (bio.trim().isEmpty() || bio.trim().length() < 5) {
+                    bio_text.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+                }else {
+                    bio_text.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
+                } 
+
+                if (!algunoSeleccionado) {
+                    opt_sweet.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+                    //opt_salty.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+                    //opt_healty.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+                }else {
+                    opt_sweet.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
+                    //opt_salty.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
+                    //opt_healty.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
+                }
+
+                if (!terminosSeleccionados) {
+                    accept_terms.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+                }else {
+                    accept_terms.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
+                }
+
+
+            }
+        });
 
         // GRUPO DE BOTONES
         ButtonGroup terms = new ButtonGroup();
