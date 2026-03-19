@@ -34,6 +34,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -88,15 +90,15 @@ public class Ventana extends JFrame {
         sub_menu2.add(file_5);
 
         // SUMMONS
-        // this.login();
-        // this.registro();
+        this.login();
+        this.registro();
         // this.users();
         // this.calculadora();
         // this.calculadora_layaout();
         // this.interes();
         // this.pintar();
         // this.RegistroUsuario();
-        this.casa();
+        // this.casa();
 
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -105,24 +107,33 @@ public class Ventana extends JFrame {
 
     public void login() {
         // PANELS
-        JPanel login_container = new JPanel();
-        login_container.setBounds(285, 30, 200, 800);
+        JPanel login_container = new JPanel() {
+            private Image fondo = new ImageIcon(getClass().getResource("/imagenes/NuevoFondo.jpg")).getImage();
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        login_container.setBounds(80, 50, 400, 600);
         login_container.setLayout(null);
         this.add(login_container);
 
         // TITULO
-        /*
-         * JLabel tag_title = new JLabel();
-         * tag_title.setText("BIENVENIDO");
-         * tag_title.setBounds(100, -30, 200, 200);
-         * tag_title.setBackground(Color.white);
-         * tag_title.setOpaque(false);
-         * tag_title.setFont(new Font("Arial", Font.BOLD, 22));
-         * tag_title.setHorizontalAlignment(JLabel.CENTER);
-         * login_container.add(tag_title);
-         */
+        
+        JLabel tag_title = new JLabel();
+        tag_title.setText("BIENVENIDO");
+        tag_title.setBounds(100, 140, 200, 200);
+        tag_title.setBackground(Color.white);
+        tag_title.setOpaque(false);
+        tag_title.setFont(new Font("Arial", Font.BOLD, 22));
+        tag_title.setHorizontalAlignment(JLabel.CENTER);
+        login_container.add(tag_title);
+         
 
         // IMAGENES
+
 
         // ICONOS
 
@@ -166,6 +177,22 @@ public class Ventana extends JFrame {
         access_btn.setForeground(Color.white);
         login_container.add(access_btn);
 
+        access_btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String email = email_input.getText();
+
+                if (email.equals("")) {
+                    System.out.println("vacio");
+
+                    email_input.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+                }else {
+                    email_input.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
+                }
+            }
+        });
+
         // CHECK
         JCheckBox rememberme = new JCheckBox("Recordarme");
         rememberme.setBounds(65, 446, 150, 30);
@@ -177,7 +204,15 @@ public class Ventana extends JFrame {
         // REGISTRO
 
         // PANEL
-        JPanel rgstr_container = new JPanel();
+        JPanel rgstr_container = new JPanel() {
+            private Image fondoRegister = new ImageIcon(getClass().getResource("/imagenes/FondoChido.jpg")).getImage();
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(fondoRegister, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
         rgstr_container.setBounds(500, 50, 400, 600);
         rgstr_container.setOpaque(true);
         rgstr_container.setLayout(null);
@@ -189,6 +224,7 @@ public class Ventana extends JFrame {
         rgstr_tag.setHorizontalAlignment(JLabel.CENTER);
         rgstr_tag.setOpaque(false);
         rgstr_tag.setFont(new Font("Arial", Font.BOLD, 22));
+        rgstr_tag.setForeground(Color.WHITE);
         rgstr_container.add(rgstr_tag);
 
         // TEXTO
@@ -203,6 +239,7 @@ public class Ventana extends JFrame {
         pref_text.setBounds(50, 350, 300, 30);
         pref_text.setFont(new Font("Arial", Font.BOLD, 12));
         pref_text.setHorizontalAlignment(JLabel.CENTER);
+        pref_text.setForeground(Color.WHITE);
         rgstr_container.add(pref_text);
 
         JLabel bio_tag = new JLabel("BIO");
@@ -241,27 +278,32 @@ public class Ventana extends JFrame {
         JCheckBox opt_sweet = new JCheckBox("Dulce");
         opt_sweet.setBounds(50, 385, 100, 20);
         opt_sweet.setOpaque(false);
+        opt_sweet.setForeground(Color.WHITE);
         rgstr_container.add(opt_sweet);
 
         JCheckBox opt_salty = new JCheckBox("Salado");
         opt_salty.setBounds(150, 385, 100, 20);
         opt_salty.setOpaque(false);
+        opt_salty.setForeground(Color.WHITE);
         rgstr_container.add(opt_salty);
 
         JCheckBox opt_healty = new JCheckBox("Saludable");
         opt_healty.setBounds(250, 385, 100, 20);
         opt_healty.setOpaque(false);
+        opt_healty.setForeground(Color.WHITE);
         rgstr_container.add(opt_healty);
 
         // LABEL TERMS
         JRadioButton accept_terms = new JRadioButton("Acepto los terminos");
         accept_terms.setBounds(50, 470, 150, 20);
         accept_terms.setOpaque(false);
+        accept_terms.setForeground(Color.WHITE);
         rgstr_container.add(accept_terms);
 
         JRadioButton reject_terms = new JRadioButton("Rechazo los terminos");
         reject_terms.setBounds(200, 470, 150, 20);
         reject_terms.setOpaque(false);
+        reject_terms.setForeground(Color.WHITE);
         rgstr_container.add(reject_terms);
 
         // BOTONES
@@ -747,7 +789,7 @@ public class Ventana extends JFrame {
                 g.setColor(new Color(0, 180, 220));
                 g.fillRect(0, 0, 900, 400);
 
-                //PARTE TRACERA CERCA
+                // PARTE TRACERA CERCA
                 g.setColor(Color.decode("#CC9945"));
                 g.fillRect(160, 340, 600, 40);
 
@@ -767,15 +809,14 @@ public class Ventana extends JFrame {
                 g.setColor(new Color(235, 200, 120));
                 g.fillRect(320, 260, 260, 110);
 
-                //SOMBRA TECHO
-                int xSombra[] = {320, 580, 580};
-                int ySombra[] = {260, 290, 260};
+                // SOMBRA TECHO
+                int xSombra[] = { 320, 580, 580 };
+                int ySombra[] = { 260, 290, 260 };
 
                 g.setColor(new Color(189, 157, 83));
                 g.fillPolygon(xSombra, ySombra, 3);
 
-                //SOMBRA VENTANA
-                
+                // SOMBRA VENTANA
 
                 // LINEAS DE MADERA
                 g.setColor(new Color(114, 95, 49));
@@ -805,7 +846,7 @@ public class Ventana extends JFrame {
                 g.setColor(Color.WHITE);
                 g.fillOval(390, 325, 10, 10);
 
-                //MARCO DE PUERTA
+                // MARCO DE PUERTA
                 g.setColor(Color.decode("#5C2F09"));
                 g.fillRect(340, 280, 5, 90);
                 g.fillRect(340, 280, 70, 5);
@@ -825,8 +866,6 @@ public class Ventana extends JFrame {
                 // BASE VENTANA
                 g.setColor(Color.DARK_GRAY);
                 g.fillRect(445, 350, 90, 10);
-
-
 
                 // CERCA IZQUIERDA
                 g.setColor(new Color(240, 180, 80));
@@ -853,4 +892,5 @@ public class Ventana extends JFrame {
         panel.setBounds(30, 30, 800, 600);
         this.add(panel);
     }
+
 }
