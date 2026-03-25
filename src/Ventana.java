@@ -75,13 +75,13 @@ public class Ventana extends JFrame {
         barra.add(switch_acount);
 
         JMenuItem login = new JMenuItem("Registro");
-        login.addActionListener(e ->{
+        login.addActionListener(e -> {
             this.router("registro");
         });
         switch_acount.add(login);
 
         JMenuItem registro = new JMenuItem("Login");
-        registro.addActionListener(e ->{
+        registro.addActionListener(e -> {
             this.router("login");
         });
         switch_acount.add(registro);
@@ -93,7 +93,7 @@ public class Ventana extends JFrame {
         menu1.add(file_m2);
 
         JMenuItem file_m3 = new JMenuItem("Close");
-        file_m3.addActionListener(e ->{
+        file_m3.addActionListener(e -> {
             this.dispose();
         });
         menu1.add(file_m3);
@@ -119,9 +119,10 @@ public class Ventana extends JFrame {
         // this.pintar();
         // this.RegistroUsuario();
         // this.casa();
-    
-        this.router("login");
-        
+        this.examen();
+
+        // this.router("login");
+
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.repaint();
@@ -134,7 +135,7 @@ public class Ventana extends JFrame {
         if (target.equals("login"))
             this.login();
 
-        if (target.equals("registro")) 
+        if (target.equals("registro"))
             this.registro();
 
         this.repaint();
@@ -238,7 +239,8 @@ public class Ventana extends JFrame {
                 if (!emailValido || !passwordValido) {
                     JOptionPane.showMessageDialog(null, "Completa correctamente los campos");
                 } else if (!email.equals(correo) || !password.equals(contraseña)) {
-                    JOptionPane.showMessageDialog(null, "Correo o contraseña incorrectas (Esta maaaaal)", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Correo o contraseña incorrectas (Esta maaaaal)", "Error",
+                            JOptionPane.ERROR_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(null, "Bienvenido");
                 }
@@ -253,11 +255,9 @@ public class Ventana extends JFrame {
         registro.setForeground(Color.WHITE);
         login_container.add(registro);
 
-        registro.addActionListener(e ->{
+        registro.addActionListener(e -> {
             this.router("registro");
         });
-
-
 
         // CHECK
         JCheckBox rememberme = new JCheckBox("Recordarme");
@@ -430,7 +430,7 @@ public class Ventana extends JFrame {
         login.setForeground(Color.WHITE);
         rgstr_container.add(login);
 
-        login.addActionListener(e ->{
+        login.addActionListener(e -> {
             this.router("login");
         });
 
@@ -554,4 +554,182 @@ public class Ventana extends JFrame {
 
     }
 
+    public void examen() {
+
+        JPanel ventana = new JPanel();
+        ventana.setBounds(90, 50, 700, 650);
+        ventana.setBackground(Color.WHITE);
+        ventana.setLayout(null);
+        this.add(ventana);
+
+        // PARTE SUPERIOR
+        JPanel panel = new JPanel();
+        panel.setBounds(0, 0, 700, 80);
+        panel.setBackground(new Color(0, 102, 153));
+        panel.setLayout(null);
+        ventana.add(panel);
+
+        JLabel titulo = new JLabel("Factura en Java - Visual estudio - ArrayList y POO");
+        titulo.setBounds(20, 15, 500, 25);
+        titulo.setForeground(Color.WHITE);
+        titulo.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(titulo);
+
+        JLabel subtitulo = new JLabel("[Sin base de datos]");
+        subtitulo.setBounds(20, 40, 200, 20);
+        subtitulo.setForeground(Color.WHITE);
+        panel.add(subtitulo);
+
+        // DATOS
+        JPanel cliente = new JPanel();
+        cliente.setBorder(BorderFactory.createTitledBorder("Datos del cliente"));
+        cliente.setLayout(null);
+        cliente.setBounds(30, 90, 640, 100);
+        ventana.add(cliente);
+
+        JLabel documento = new JLabel("Documento:");
+        documento.setBounds(30, 20, 70, 20);
+        cliente.add(documento);
+
+        JTextField doc_text = new JTextField("123456");
+        doc_text.setBounds(120, 23, 70, 20);
+        cliente.add(doc_text);
+
+        JLabel nombre = new JLabel("Nombres:");
+        nombre.setBounds(400, 20, 70, 20);
+        cliente.add(nombre);
+
+        JTextField name_text = new JTextField("Jhon Doe");
+        name_text.setBounds(490, 23, 70, 20);
+        cliente.add(name_text);
+
+        JLabel direccion = new JLabel("Dierccion:");
+        direccion.setBounds(30, 65, 70, 20);
+        cliente.add(direccion);
+
+        JTextField direc_text = new JTextField("Calle 1 # 123");
+        direc_text.setBounds(120, 65, 70, 20);
+        cliente.add(direc_text);
+
+        JLabel telefono = new JLabel("Telefono:");
+        telefono.setBounds(400, 65, 70, 20);
+        cliente.add(telefono);
+
+        JTextField tel_text = new JTextField("5554433");
+        tel_text.setBounds(490, 65, 70, 20);
+        cliente.add(tel_text);
+
+        // FACTURA
+        JPanel factura = new JPanel();
+        factura.setBounds(30, 200, 640, 60);
+        factura.setBorder(BorderFactory.createTitledBorder("Datos de factura"));
+        factura.setLayout(null);
+        ventana.add(factura);
+
+        JLabel nFactura = new JLabel("N° Factura:");
+        nFactura.setBounds(30, 20, 70, 20);
+        factura.add(nFactura);
+
+        JTextField fac_text = new JTextField("1");
+        fac_text.setBounds(120, 20, 70, 20);
+        factura.add(fac_text);
+
+        JLabel fecha = new JLabel("Fecha:");
+        fecha.setBounds(400, 20, 70, 20);
+        factura.add(fecha);
+
+        JTextField fecha_text = new JTextField("2021/06/21");
+        fecha_text.setBounds(490, 20, 70, 20);
+        factura.add(fecha_text);
+
+        // TABLA
+        String[] columnas = { "Producto", "Cantidad", "Valor", "Sub Total" };
+        Object[][] datos = {
+                { "Agua", 2, 500, 1000.0 },
+                { "Cereal", 5, 1000, 5000.0 },
+                { "Leche", 2, 300, 600.0 }
+        };
+
+        JTable tabla = new JTable(new javax.swing.table.DefaultTableModel(datos, columnas));
+        JScrollPane scroll = new JScrollPane(tabla);
+        scroll.setBounds(30, 300, 640, 120);
+        ventana.add(scroll);
+
+        // BOTONE
+        JPanel botones = new JPanel();
+        botones.setBounds(30, 270, 640, 30);
+        botones.setLayout(null);
+        ventana.add(botones);
+
+        JLabel text = new JLabel("Ver listado de facturas");
+        text.setBounds(35, 5, 130, 20);
+        botones.add(text);
+
+        JButton btnAgregar = new JButton("Añadir");
+        btnAgregar.setBounds(440, 5, 80, 20);
+        botones.add(btnAgregar);
+
+        JButton btnEliminar = new JButton("Eliminar");
+        btnEliminar.setBounds(550, 5, 80, 20);
+        botones.add(btnEliminar);
+
+        // TOTAL
+        JPanel total_panel = new JPanel();
+        total_panel.setBounds(30, 430, 640, 200);
+        total_panel.setLayout(null);
+        ventana.add(total_panel);
+
+        JLabel subtotal = new JLabel("Subtotal:");
+        subtotal.setBounds(30, 10, 100, 30);
+        total_panel.add(subtotal);
+
+        JLabel subtotal_text = new JLabel("6600.0");
+        subtotal_text.setBounds(90, 10, 100, 30);
+        total_panel.add(subtotal_text);
+
+        JLabel descuento_tag = new JLabel("% Descuento:");
+        descuento_tag.setBounds(30, 50, 80, 30);
+        total_panel.add(descuento_tag);
+
+        JTextField descuento = new JTextField("5");
+        descuento.setBounds(140, 55, 30, 20);
+        total_panel.add(descuento);
+
+        JCheckBox check = new JCheckBox();
+        check.setBounds(180, 52, 20, 25);
+        total_panel.add(check);
+
+        JLabel valor_des = new JLabel("Valor descontado:");
+        valor_des.setBounds(250, 53, 110, 20);
+        total_panel.add(valor_des);
+
+        JLabel valor_text = new JLabel("330.0");
+        valor_text.setBounds(370, 53, 100, 20);
+        total_panel.add(valor_text);
+
+        JLabel iva = new JLabel("IVA 19%:");
+        iva.setBounds(30, 95, 110, 20);
+        total_panel.add(iva);
+
+        JLabel iva_text = new JLabel("1254.0");
+        iva_text.setBounds(90, 95, 100, 20);
+        total_panel.add(iva_text);
+
+        JLabel total_fac = new JLabel("Total Factura:");
+        total_fac.setBounds(30, 130, 110, 20);
+        total_panel.add(total_fac);
+
+        JLabel total_text = new JLabel("7524.0");
+        total_text.setBounds(120, 130, 100, 20);
+        total_panel.add(total_text);
+
+        JButton finalizar = new JButton("Finalizar factura");
+        finalizar.setBounds(440, 160, 180, 30);
+        total_panel.add(finalizar);
+
+        JPanel borde = new JPanel();
+        borde.setBounds(0, 630, 700, 20);
+        borde.setBackground(new Color(0,102,153));
+        ventana.add(borde);
+    }
 }
