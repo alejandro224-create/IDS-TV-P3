@@ -36,8 +36,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -45,7 +47,7 @@ import java.io.IOException;
 public class Ventana extends JFrame {
     public Ventana() {
         // CONFIGURACIONES BASICAS
-        this.setBounds(0, 0, 1000, 800);
+        this.setBounds(0, 0, 1300, 700);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Ventana de Prueba");
         this.setLayout(null);
@@ -116,11 +118,10 @@ public class Ventana extends JFrame {
         // this.calculadora();
         // this.calculadora_layaout();
         // this.interes();
-        // this.pintar();
         // this.RegistroUsuario();
         // this.casa();
-        this.examen();
-
+        // this.examen();
+        this.dibujarEscena();
         // this.router("login");
 
         this.setLocationRelativeTo(null);
@@ -729,7 +730,111 @@ public class Ventana extends JFrame {
 
         JPanel borde = new JPanel();
         borde.setBounds(0, 630, 700, 20);
-        borde.setBackground(new Color(0,102,153));
+        borde.setBackground(new Color(0, 102, 153));
         ventana.add(borde);
     }
+
+    public void dibujarEscena() {
+        JPanel pane = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+
+                super.paintComponent(g);
+
+                Graphics2D g2 = (Graphics2D) g;
+
+                //FONDO
+                g2.setColor(new Color(150, 200, 215));
+                g2.fillRect(0, 0, 1300, 700);
+
+                //SUELO
+                g2.setColor(new Color(220, 175, 155));
+                g2.fillRoundRect(0, 580, 1300, 120, 20, 20);
+
+                //BLOQUES FLOTANTES
+                g2.setColor(new Color(245, 140, 85));
+
+                g2.fillRect(200, 40, 70, 70);
+                g2.fillRect(280, 40, 70, 70);
+
+                g2.fillRect(40, 280, 70, 70);
+
+                g2.fillRect(1150, 120, 70, 70);
+
+                g2.setColor(Color.BLACK);
+                g2.setStroke(new BasicStroke(3));
+                g2.drawRect(200, 40, 70, 70);
+                g2.drawRect(280, 40, 70, 70);
+                g2.drawRect(40, 280, 70, 70);
+                g2.drawRect(1150, 120, 70, 70);
+
+                //SOMBRAS
+                g2.fillRoundRect(550, 235, 220, 345, 15, 15); // sombra azul
+
+                //BLOQUE AZUL
+                g2.setColor(new Color(110, 160, 210));
+                g2.fillRoundRect(520, 198, 220, 380, 15, 15);
+
+                g2.setColor(Color.BLACK);
+                g2.drawRoundRect(520, 198, 220, 380, 15, 15);
+
+                g2.fillRoundRect(430, 380, 180, 200, 15, 15); // sombra rosa
+
+                //TORNILLOS
+                g2.setColor(Color.GRAY);
+                g2.fillOval(530, 210, 30, 30);
+                g2.fillOval(700, 210, 30, 30);
+
+                //BLOQUE ROSA
+                g2.setColor(new Color(225, 170, 155));
+                g2.fillRoundRect(380, 348, 200, 230, 15, 15);
+
+                g2.setColor(Color.BLACK);
+                g2.drawRoundRect(380, 348, 200, 230, 15, 15);
+
+                //TORNILLOS
+                g2.setColor(Color.GRAY);
+                g2.fillOval(390, 355, 30, 30);
+                g2.fillOval(540, 355, 30, 30);
+                g2.fillOval(390, 540, 30, 30);
+                g2.fillOval(540, 540, 30, 30);
+
+                //TUBO
+                
+                
+                g2.setColor(new Color(30, 160, 30));
+                g2.fillRect(860, 380, 100, 200);
+                
+                g2.setColor(new Color(20, 120, 20));
+                g2.fillRect(855, 340, 110, 40);
+                
+                g2.setColor(new Color(80, 220, 80));
+                g2.fillRect(870, 340, 10, 240);
+                g2.fillRect(890, 340, 5, 240);
+
+                g2.setColor(Color.BLACK);
+                g2.fillRect(928,340, 10, 240);
+
+                g2.setColor(Color.BLACK);
+                g2.drawRect(855, 340, 110, 40);
+                g2.drawRect(860, 380, 100, 200);
+                
+                //BLOQUE VERDE
+                g2.setColor(new Color(80, 200, 100));
+                g2.fillRoundRect(1080, 300, 220, 280, 15, 15);
+
+                g2.setColor(Color.BLACK);
+                g2.drawRoundRect(1080, 300, 220, 280, 15, 15);
+
+                //TORNILLOS
+                g2.setColor(Color.GRAY);
+                g2.fillOval(1090, 310, 30, 30);
+                g2.fillOval(1090, 530, 30, 30);
+            }
+        };
+        pane.setBounds(0, 0, 1300, 700);
+        this.add(pane);
+
+    }
+
 }
