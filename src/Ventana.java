@@ -5,6 +5,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -47,7 +48,7 @@ import java.io.IOException;
 public class Ventana extends JFrame {
     public Ventana() {
         // CONFIGURACIONES BASICAS
-        this.setBounds(0, 0, 1300, 700);
+        this.setBounds(0, 0, 1000, 800);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Ventana de Prueba");
         this.setLayout(null);
@@ -76,17 +77,69 @@ public class Ventana extends JFrame {
         JMenu switch_acount = new JMenu("Cuentas");
         barra.add(switch_acount);
 
+        //PANEL DE REGISTRO
         JMenuItem login = new JMenuItem("Registro");
         login.addActionListener(e -> {
             this.router("registro");
         });
         switch_acount.add(login);
 
+        //PANEL DE LOGIN
         JMenuItem registro = new JMenuItem("Login");
         registro.addActionListener(e -> {
             this.router("login");
         });
         switch_acount.add(registro);
+
+        //PANEL DE RECUPERACION
+        JMenuItem recuperar = new JMenuItem("Recuperar");
+        recuperar.addActionListener(e -> {
+            this.router("forgot");
+        });
+        switch_acount.add(recuperar);
+
+        //PANEL DE ALTA DE USUARIO
+        JMenuItem altaUsuario = new JMenuItem("Alta Usuario");
+        altaUsuario.addActionListener(e -> {
+            this.router("altaUsuario");
+        });
+        switch_acount.add(altaUsuario);
+
+        //PANEL DE BAJA DE USUARIO
+        JMenuItem bajaUsuario = new JMenuItem("Baja Usuario");
+        bajaUsuario.addActionListener(e -> {
+            this.router("bajaUsuario");
+        });
+        switch_acount.add(bajaUsuario);
+
+        //PANEL DE CONSULTAR USUARIO
+        JMenuItem consultUsuario = new JMenuItem("Consultar Usuario");
+        consultUsuario.addActionListener(e -> {
+            this.router("consultarUsuario");
+        });
+        switch_acount.add(consultUsuario);
+
+        //PANEL DE AYUDA DE CREACION USUARIO
+        JMenuItem ayudaCreacion = new JMenuItem("Creacion de Usuario");
+        ayudaCreacion.addActionListener(e -> {
+            this.router("ayudaCreacionUsuario");
+        });
+        switch_acount.add(ayudaCreacion);
+
+        //PANEL DE YUDA DE ACCESO AL SISTEMA
+        JMenuItem ayudaAcceso = new JMenuItem("Acceso al Sistema");
+        ayudaAcceso.addActionListener(e -> {
+            this.router("ayudaAccesoSistema");
+        });
+        switch_acount.add(ayudaAcceso);
+
+        //PANEL DE RECUPERAR CONTRASEÑA
+        JMenuItem ayudaRecuperacion = new JMenuItem("Recuperacion contraseña");
+        ayudaRecuperacion.addActionListener(e -> {
+            this.router("ayudaRecuperarContraseña");
+        });
+        switch_acount.add(ayudaRecuperacion);
+
 
         JMenuItem file_m1 = new JMenuItem("New");
         menu1.add(file_m1);
@@ -121,8 +174,8 @@ public class Ventana extends JFrame {
         // this.RegistroUsuario();
         // this.casa();
         // this.examen();
-        this.dibujarEscena();
-        // this.router("login");
+        // this.dibujarEscena();
+        this.router("login");
 
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -138,6 +191,34 @@ public class Ventana extends JFrame {
 
         if (target.equals("registro"))
             this.registro();
+
+        if (target.equals("forgot")) {
+            this.recuperarCuenta();
+        }
+
+        if (target.equals("altaUsuario")) {
+            this.altaUsuario();
+        }
+
+        if (target.equals("bajaUsuario")) {
+            this.bajaUsuario();
+        }
+
+        if (target.equals("consultarUsuario")) {
+            this.consultarUsuario();
+        }
+
+        if (target.equals("ayudaCreacionUsuario")) {
+            this.ayudaCrearUsuario();
+        }
+
+        if (target.equals("ayudaAccesoSistema")) {
+            this.ayudaAccesoSistema();
+        }
+
+        if (target.equals("ayudaRecuperarContraseña")) {
+            this.ayudaRecuperarContraseña();
+        }
 
         this.repaint();
         this.revalidate();
@@ -813,9 +894,6 @@ public class Ventana extends JFrame {
                 g2.fillRect(890, 340, 5, 240);
 
                 g2.setColor(Color.BLACK);
-                g2.fillRect(928,340, 10, 240);
-
-                g2.setColor(Color.BLACK);
                 g2.drawRect(855, 340, 110, 40);
                 g2.drawRect(860, 380, 100, 200);
                 
@@ -837,4 +915,145 @@ public class Ventana extends JFrame {
 
     }
 
+    public void recuperarCuenta() {
+
+        // PANEL
+        JPanel forgotPanel = new JPanel();
+        forgotPanel.setBounds(280, 50, 400, 650);
+        forgotPanel.setBackground(Color.WHITE);
+        forgotPanel.setLayout(null);
+        this.add(forgotPanel);
+
+        // TITULO
+        JLabel tag_title = new JLabel();
+        tag_title.setText("RECUPERACION");
+        tag_title.setBounds(100, 140, 200, 200);
+        tag_title.setBackground(Color.white);
+        tag_title.setOpaque(false);
+        tag_title.setFont(new Font("Arial", Font.BOLD, 22));
+        tag_title.setHorizontalAlignment(JLabel.CENTER);
+        forgotPanel.add(tag_title);
+
+
+    }
+
+    public void altaUsuario() {
+
+        // PANEL
+        JPanel altaPanel = new JPanel();
+        altaPanel.setBounds(280, 50, 400, 650);
+        altaPanel.setBackground(Color.WHITE);
+        altaPanel.setLayout(null);
+        this.add(altaPanel);
+
+        // TITULO
+        JLabel tag_title = new JLabel();
+        tag_title.setText("ALTA DE USUARIOS");
+        tag_title.setBounds(75, 140, 250, 200);
+        tag_title.setBackground(Color.white);
+        tag_title.setOpaque(false);
+        tag_title.setFont(new Font("Arial", Font.BOLD, 22));
+        tag_title.setHorizontalAlignment(JLabel.CENTER);
+        altaPanel.add(tag_title);
+    }
+
+    public void bajaUsuario() {
+
+        // PANEL
+        JPanel bajaPanel = new JPanel();
+        bajaPanel.setBounds(280, 50, 400, 650);
+        bajaPanel.setBackground(Color.WHITE);
+        bajaPanel.setLayout(null);
+        this.add(bajaPanel);
+
+        // TITULO
+        JLabel tag_title = new JLabel();
+        tag_title.setText("BAJA DE USUARIO");
+        tag_title.setBounds(75, 140, 250, 200);
+        tag_title.setBackground(Color.white);
+        tag_title.setOpaque(false);
+        tag_title.setFont(new Font("Arial", Font.BOLD, 22));
+        tag_title.setHorizontalAlignment(JLabel.CENTER);
+        bajaPanel.add(tag_title);
+    }
+
+    public void consultarUsuario() {
+
+        // PANEL
+        JPanel consultarPanel = new JPanel();
+        consultarPanel.setBounds(280, 50, 400, 650);
+        consultarPanel.setBackground(Color.WHITE);
+        consultarPanel.setLayout(null);
+        this.add(consultarPanel);
+
+        // TITULO
+        JLabel tag_title = new JLabel();
+        tag_title.setText("CONSULTAR USUARIO");
+        tag_title.setBounds(75, 140, 250, 200);
+        tag_title.setBackground(Color.white);
+        tag_title.setOpaque(false);
+        tag_title.setFont(new Font("Arial", Font.BOLD, 22));
+        tag_title.setHorizontalAlignment(JLabel.CENTER);
+        consultarPanel.add(tag_title);
+    }
+
+    public void ayudaCrearUsuario() {
+
+        // PANEL
+        JPanel ayudaCrearPanel = new JPanel();
+        ayudaCrearPanel.setBounds(280, 50, 400, 650);
+        ayudaCrearPanel.setBackground(Color.WHITE);
+        ayudaCrearPanel.setLayout(null);
+        this.add(ayudaCrearPanel);
+
+        // TITULO
+        JLabel tag_title = new JLabel();
+        tag_title.setText("AYUDA DE CREACION DE USUARIO");
+        tag_title.setBounds(75, 140, 250, 200);
+        tag_title.setBackground(Color.white);
+        tag_title.setOpaque(false);
+        tag_title.setFont(new Font("Arial", Font.BOLD, 22));
+        tag_title.setHorizontalAlignment(JLabel.CENTER);
+        ayudaCrearPanel.add(tag_title);
+    }
+
+    public void ayudaAccesoSistema() {
+
+        // PANEL
+        JPanel ayudaAccesoPanel = new JPanel();
+        ayudaAccesoPanel.setBounds(280, 50, 400, 650);
+        ayudaAccesoPanel.setBackground(Color.WHITE);
+        ayudaAccesoPanel.setLayout(null);
+        this.add(ayudaAccesoPanel);
+
+        // TITULO
+        JLabel tag_title = new JLabel();
+        tag_title.setText("AYUDA DE ACCESO AL PANEL");
+        tag_title.setBounds(75, 140, 250, 200);
+        tag_title.setBackground(Color.white);
+        tag_title.setOpaque(false);
+        tag_title.setFont(new Font("Arial", Font.BOLD, 22));
+        tag_title.setHorizontalAlignment(JLabel.CENTER);
+        ayudaAccesoPanel.add(tag_title);
+    }
+
+    public void ayudaRecuperarContraseña() {
+
+        // PANEL
+        JPanel ayudaRecuperarPanel = new JPanel();
+        ayudaRecuperarPanel.setBounds(280, 50, 400, 650);
+        ayudaRecuperarPanel.setBackground(Color.WHITE);
+        ayudaRecuperarPanel.setLayout(null);
+        this.add(ayudaRecuperarPanel);
+
+        // TITULO
+        JLabel tag_title = new JLabel();
+        tag_title.setText("RECUPERACION DE CONTRASEÑA");
+        tag_title.setBounds(75, 140, 250, 200);
+        tag_title.setBackground(Color.white);
+        tag_title.setOpaque(false);
+        tag_title.setFont(new Font("Arial", Font.BOLD, 22));
+        tag_title.setHorizontalAlignment(JLabel.CENTER);
+        ayudaRecuperarPanel.add(tag_title);
+    }
 }
