@@ -1,5 +1,6 @@
 public class App {
     public static void main(String[] args) throws Exception {
-        Ventana Ventana = new Ventana();
+        // Ventana Ventana = new Ventana();
+        Memorice Memorice = new Memorice();
     }
 }
